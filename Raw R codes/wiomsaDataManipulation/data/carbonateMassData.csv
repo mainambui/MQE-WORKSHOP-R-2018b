@@ -1,0 +1,379 @@
+"sample","taxon","mass"
+"E01","Hamelida sp.",5.85
+"E01","Coraline algae",57.88
+"E01","Foraminifera",1.32
+"E01","Alcyonacea",0.88
+"E01","Scleractinia",8.67
+"E01","Tube worms",6.39
+"E01","Bryozoa",0.07
+"E01","Bivalvia",30.95
+"E01","Gastropoda",44.7
+"E01","Decapoda",1.32
+"E01","Cirripedia",0.04
+"E01","Echinodermata",0.15
+"E01","Residue",11.42
+"E03","Rough Coral",33.301
+"E03","Smooth Coral",13.63
+"E03","Forams: Marginopera",3.968
+"E03","Forams: Halimeda",3.997
+"E03","Worm Tubes",1.318
+"E03","Red Worm Tubes",0.249
+"E03","Echinoderms",0.566
+"E03","Gastropods",24.408
+"E03","Bivalves",22.145
+"E03","Chiton",0.42
+"E03","Crab",2.057
+"E03","Residue",21.521
+"E04","Hamelida",3.64
+"E04","Coraline Algae",31.1
+"E04","Coraline Algae",18.5
+"E04","Soft coral",0.21
+"E04","Tube worm",0.14
+"E04","Scleractinia",0.12
+"E04","Gastropoda",25.08
+"E04","Echinoderm",0.04
+"E04","Scaphopod",0.19
+"E04","Foram",1.82
+"E04","Decapoda",2.11
+"E04","Bivalvia",22.38
+"E04","Unsorted",22.21
+"E05","Coral",28.69
+"E05","Forams",1.708
+"E05","Echinoderms",0.087
+"E05","Crab",1.9
+"E05","Bivalves",30.186
+"E05","Gastropoda",27.836
+"E05","Worm Tubes",4.215
+"E05","Coraline Algae",8.35
+"E05","Holimeda",22.37
+"E06","Coral",53.047
+"E06","Algae",7.414
+"E06","Bivalves",22.96
+"E06","Gastropods",15.341
+"E06","Marginopera",1.969
+"E06","Halimeda",3.818
+"E06","Crab",1.449
+"E06","Worm Tunnel",10.272
+"E06","Sea Urchin",0.009
+"E06","Chitin",0.242
+"E06","Residue",17.133
+"E07","Crabs",1.23
+"E07","Coral",2.06
+"E07","Worm Tubes",13.18
+"E07","Bivalves",21.79
+"E07","Gastropods (Terebridae)",26.49
+"E07","Gastropods (Atys)",1.43
+"E07","Halamida",6.99
+"E07","Forams",0.86
+"E07","Predated bivalves",0.89
+"E07","Opercular",0.61
+"E07","Sea Urchin",0.01
+"E07","Chitin",0.18
+"E07","Residue",56.74
+"E08","Coral ect.",54.58
+"E08","Gastropods",38.78
+"E08","Bivalves",19.45
+"E08","Halidemeda",7.05
+"E08","Marginopera",1.85
+"E08","Worm Tubes",8.04
+"E08","Echinodermata",1.51
+"E08","Crab",1.26
+"E08","Residue",1.38
+"E09","Gastropoda",21.95
+"E09","Declapoda",3.6
+"E09","Bivalve",14.91
+"E09","Bryzoa",0.009
+"E09","Brachiopod",5.55
+"E09","Tube worm",1.01
+"E09","Foraminifera",3.14
+"E09","Coraline Algae",12.85
+"E09","Scleractinia",8.83
+"E09","Scaphopoda",0.031
+"E09","Unsorted",61.88
+"E10","gastropoda",21.112
+"E10","decapoda",0.976
+"E10","bivalvia",24.986
+"E10","halimeda",4.215
+"E10","coral",43.434
+"E10","bryozoan",0.367
+"E10","forams",0.672
+"E10","worm tubes",11.553
+"E10","residue",22.124
+"E11","Tube Worms",5.702
+"E11","Residue",4.94
+"E11","Marginopera",1.52
+"E11","Halimeda",6.566
+"E11","Coral",17.331
+"E11","Gastropods",21.478
+"E11","Oysters",0.241
+"E11","Crab",1.413
+"E11","Echinoderms",0.486
+"E11","Soft Coral",0.564
+"E11","Vermitid",0.041
+"E11","Chitin",0.022
+"E11","Coral Rubble",50.096
+"E11","Bivalves",23.851
+"E12","Coraline Algae",8.5
+"E12","Residue",45.351
+"E12","Worm Tubes",8.4
+"E12","Gastropods",9.75
+"E12","Bivalves",26.99
+"E12","Coral",32.077
+"E12","Halimeda",4.75
+"E12","Crab Parts",1.05
+"E12","Echinoderms",0.315
+"E12","Bryozoans",0.046
+"E12","Forams",0.923
+"E14","bivalve",17.132
+"E14","gastropod",9.175
+"E14","worm tube",5.585
+"E14","coral",46.044
+"E14","foram",1.02
+"E14","halimeda",10.822
+"E14","bryozoa",0.313
+"E14","coralline alga",4.107
+"E14","echinoderm",0.89
+"E14","scaphopod",0.11
+"E14","bivalve residue",21.298
+"E14","gastropod residue",14.272
+"E14","crab",1.972
+"E15","Halimeda",9.534
+"E15","Coral",15.351
+"E15","m. vertebralis",1.244
+"E15","Crab claws",1.245
+"E15","mitridae",3.101
+"E15","worm tube",0.119
+"E15","ethalia",2.607
+"E15","Bivalve",14.642
+"E16","Coral",39.75
+"E16","Echinodermata",0.35
+"E16","Tube Worm",0.7
+"E16","Gastropoda",16.36
+"E16","Bivalva",19.6
+"E16","Algae: Halimeda",5.35
+"E16","Foram: M.vertebralis",1
+"E16","Crustacea",1.36
+"E16","Bryozoa",0.17
+"E16","Residue",41.34
+"E17","Bivalves",12.46
+"E17","Bryozoa",0.249
+"E17","Corals",34.585
+"E17","Crab",3.464
+"E17","Echinodermata",0.021
+"E17","Foraminifera (Marginopera)",1.736
+"E17","Gastropods",27.629
+"E17","Halimeda",14.319
+"E17","Residue",33.66
+"E17","Scaphopoda",1.516
+"E17","Worm tubes",3.421
+"E19","Bryozoa",1.72
+"E19","Soft coral",3.79
+"E19","Halimeda",18.9
+"E19","Coraline algae",6.332
+"E19","Gastropods: full",17.033
+"E19","Gastropods: partial",16.37
+"E19","Hard coral",41.345
+"E19","Worm tubes",5.138
+"E19","Bivalves: full",15.02
+"E19","Bivalves: partial",10.963
+"E19","Crabs",4.221
+"E19","Echinoderms",4.152
+"E19","Forams",1.525
+"E20","Coral",48.304
+"E20","Crab claws",7.306
+"E20","Halimeda",20.762
+"E20","Bivalve",21.118
+"E20","Echinoderms",2.47
+"E20","Molluscs (Auger?)",18.884
+"E20","Molluscs (Sundial)",5.309
+"E20","Foram",1.871
+"E20","Bryzoan",0.28
+"E20","Gastropod C. leucodon",0.008
+"E20","Molluscs (lettered olive)",3.645
+"E21","Halimeda",22.185
+"E21","Gastropoda",1.252
+"E21","Gastropoda",0.25
+"E21","Marginopora",2.192
+"E21","Scleractinia",15.969
+"E21","Bivalvia",3.21
+"E21","Gastropoda",2.733
+"E21","Gastropoda",5.201
+"E21","Gastropoda",5.537
+"E21","Bivalvia",3.279
+"E21","Decapoda",1.925
+"E21","Bivalvia",1.298
+"E21","Gastropoda",1.59
+"E21","Gastropoda",0.569
+"E21","Gastropoda",0.189
+"E21","Scahopoda",0.465
+"E21","Gastropoda",0.084
+"E21","Bivalvia",0.217
+"E21","Gastropoda",0.017
+"E21","Bivalvia",0.054
+"E21","Bivalvia",0.182
+"E21","Residue",68.398
+"E23","coral",27.14
+"E23","Gastropods",29.96
+"E23","Bivalves",17.8
+"E23","Marginoptera",2.44
+"E23","Halidemeda",13.922
+"E23","Echinodermata",4.199
+"E23","Scaphopoda",1.58
+"E23","Bryozoa",0.95
+"E23","Crabs",2.49
+"E23","Worm Tubes",8.575
+"E23","Residue",34.04
+"E24","Coraline Algae",45.911
+"E24","Hamalida",25.723
+"E24","Gastropods",19.705
+"E24","Residue",11.368
+"E24","Bivalves",10.536
+"E24","Hard Coarals",4.002
+"E24","Bivalves",3.985
+"E24","Decapoda",3.67
+"E24","Echinoderms",2.362
+"E24","Forams",2.148
+"E24","Tubeworm",2.138
+"E24","Bryazoans",0.683
+"E25","Gastropoda",24.6
+"E25","Bivalves",6.8
+"E25","Decopoda",1.2
+"E25","Anthozoa",14.9
+"E25","Foraminifera",1
+"E25","Echinodermata",1.5
+"E25","Halimeda",7.9
+"E26","Worm Tubes",34.656
+"E26","Forams",2.096
+"E26","Gastropod",38.076
+"E26","Halidemeda",34.411
+"E26","Bivalves",15.714
+"E26","Crabs",2.129
+"E26","Echinodermata",0.553
+"E26","Scaphododa",1.304
+"E26","Corals ect.",10.211
+"E29","Bivalve",22.71
+"E29","Residule",39.49
+"E29","Echinodermata",1.306
+"E29","Gastropoda",20.216
+"E29","Halimeda",17.83
+"E29","Coral",11.459
+"E29","Scaphopoda",0.163
+"E29","Foraminifera",1.81
+"E29","Crab",2.827
+"E30","Bivalva",23.271
+"E30","Brachiopod",0.857
+"E30","Gastropod",26.358
+"E30","Sea Grass",15.694
+"E30","Forams",2.661
+"E30","Crabs",2.546
+"E30","Corals",10.062
+"E30","echinodermata",3.063
+"E30","Tube Worms",1.179
+"E30","Residual",39.485
+"E32","Residue",26.578
+"E32","Hamalida",25.111
+"E32","Gastropoda",24.974
+"E32","Bivalve",19.106
+"E32","Coral",7.3
+"E32","Foraminifera",3.545
+"E32","Echinodermata",3.128
+"E32","Crab",1.547
+"E32","Scaphopod",0.792
+"E33","Algae",6.151
+"E33","Bivlave",17.268
+"E33","Bryzoan",0.082
+"E33","Coral",6.754
+"E33","Crab",1.963
+"E33","Echinoderm",1.594
+"E33","Foram",2.456
+"E33","Gastropod",34.391
+"E33","Homalida",16.026
+"E33","Residue",29.967
+"E33","Scaphopod",1.443
+"E33","Soft Coral",0.121
+"E33","Worm Tube",1.512
+"E34","Bivalve",21.167
+"E34","Halmalida",15.596
+"E34","Gastropoda",27.116
+"E34","Coral",4.717
+"E34","Echinodermata",1.369
+"E34","Foraminifera",1.806
+"E34","Coraline Algae",15.761
+"E34","Crab",3.156
+"E34","Tube",2.022
+"E34","Scaphopod",0.583
+"E34","Residue",25.265
+"E35","Abranda",2.702
+"E35","Forams",1.884
+"E35","Halimeda",14.567
+"E35","Crab",1.517
+"E35","Coral",34.533
+"E35","Echinoderm",1.126
+"E35","Worm",8.472
+"E35","Residue",13.768
+"E35","Bivalve",8.577
+"E35","Gastropod",35.139
+"E35","Scaphopod",0.864
+"E36","Echinodermata",2.074
+"E36","Coraline algae",2.705
+"E36","Crab",2.375
+"E36","Coral",7.376
+"E36","Bryozoans",0.22
+"E36","Foraminifera",2.12
+"E36","Scaphopod",0.926
+"E36","Gastropoda",26.703
+"E36","Residue",50.923
+"E36","Halimeda",15.78
+"E36","Bivalve",16.189
+"E36","Tube",2.757
+"E37","Crustaceans",3.22
+"E37","Residuals",38.66
+"E37","Gastropods",33.654
+"E37","Foraminfera",1.801
+"E37","Corals",16.949
+"E37","Sea Grass",16.267
+"E37","Echinodermata",1.827
+"E38","Algae",6.112
+"E38","Coral",15.675
+"E38","Echinoderms",1.867
+"E38","Crustacean",2.101
+"E38","Bivalves",23.599
+"E38","Sea grass",11.493
+"E38","Forams",1.798
+"E38","Gastropods",28.386
+"E38","Residual",29.675
+"E39","Gastropods",40.2
+"E39","Bivalves",23.8
+"E39","Residue",21.5
+"E39","Seagrass",20.1
+"E39","Branching Coral",16.6
+"E39","Tubular Coral",6.5
+"E39","Echinoderms",4.6
+"E39","Foraminifera",3.1
+"E39","Tubeworms",1.5
+"E39","Crustacean Parts",1.3
+"E39","Algal Coral",0.9
+"E40","Residue",7.89
+"E40","Gastropoda",26.22
+"E40","Coral",39.58
+"E40","Worm Tubes",2.6
+"E40","Halimeda",19.95
+"E40","Crab",2.98
+"E40","Bivalve",11.03
+"E40","Red Tubes",0.37
+"E40","Foraminifera",3.17
+"E40","Echinoderm",1.68
+"E40","Scaphopods",0.66
+"E40","Pingutellina",6.74
+"E40","Abranda",3.5
+"E41","Halimeda",5.638
+"E41","Foraminifera",0.374
+"E41","Crab",1.164
+"E41","Bivalves",23.133
+"E41","Coral",30.475
+"E41","Gastropods",15.923
+"E41","Worm Tubes",2.81
+"E41","Echinoderms",0.071
+"E41","Scaphopod",0.09
+"E41","Red Tubes",0.181
+"E41","Residue",41.892

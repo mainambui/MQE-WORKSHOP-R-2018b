@@ -1,0 +1,157 @@
+---
+title: "4.5.Missing Data"
+author: "Modified from nice R code"
+date: "13 of March 2018"
+output: html_document
+---
+
+```{r echo=FALSE}
+library(knitr)
+library(rmarkdown)
+```
+
+```{r setup, echo=FALSE}
+#opts_chunk$set(echo = FALSE, cache=FALSE)
+read_chunk('/Users/stephdagata/Documents/GitHub/MQE-R-WORKSHOP-2018/Scripts/Day 1/Day1_4.5.Missing Data.R')
+```
+
+Missing data are a fact of life in biology. Individuals die, equipment breaks, you forget to measure something, you can't read your writing, etc.
+
+If you load in data with blank cells, they will appear as an `NA` value.
+
+```{r MD1,echo=-1}
+data <- read.csv("data/seed_root_herbivores.csv")
+```
+
+Some data to play with.
+
+```{r MD2}
+x <- data$Height[1:10]
+```
+
+If the 5th element was missing
+
+```{r MD3}
+x[5] <- NA
+```
+
+This is what it would look like:
+
+Note that this is not a string "NA"; that is something different entirely.
+
+Treat a missing value as a number that could stand in for anything. So what is
+
+```{r MD4}
+1 + NA
+```
+
+```{r MD5}
+1 * NA
+```
+
+```{r MD6}
+NA + NA
+```
+
+These are all NAs because if the input could be anything, the output could be anything.
+
+What is the value of this:
+
+```{r MD7}
+mean(x)
+```
+
+It's `NA` too because `x[1] + x[2] + NA + ...` must be `NA`. And then `NA/length(x)` is also `NA`.
+
+This is a pretty common situation for data, so the mean function takes an `na.rm` argument
+
+```{r MD8}
+mean(x, na.rm = TRUE)
+```
+
+`sum` takes the same argument too:
+
+```{r MD9}
+sum(x, na.rm = TRUE)
+```
+
+Be careful though:
+
+```{r MD10}
+sum(x, na.rm = TRUE)/length(x)  # not the mean!
+```
+
+```{r MD11}
+mean(x, na.rm = TRUE)
+```
+
+The `na.omit`function will strip out all NA values:
+
+```{r MD12}
+na.omit(x)
+```
+
+
+So we can do this:
+
+```{r MD13}
+length(na.omit(x))
+```
+
+You can't test for `NA`-ness with `==`:
+
+```{r MD14}
+x == NA
+```
+
+(why not?)
+
+Use `is.na` instead:
+
+```{r MD15}
+is.na(x)
+```
+
+So `na.omit` is (roughly) equivalent to
+
+```{r MD16}
+x[!is.na(x)]
+```
+
+
+## Exercise
+
+Our standard error function doesn't deal well with missing values:
+
+```{r MD17}
+standard.error <- function(x) {
+    v <- var(x)
+    n <- length(x)
+    sqrt(v/n)
+}
+```
+
+Can you write one that always filters missing values?
+
+If we get time, we'll talk about how to write one that optionally gets rid of missing values.
+
+## Other special values:
+
+Positive and negative infinities
+
+```{r MD18}
+1/0
+```
+
+```{r MD19}
+-1/0
+```
+
+Not A Number (different to `NA`, but usually treatable the same way).
+
+
+We saw `NULL` before. It's the weirdest.
+
+```{r MD20}
+0/0
+```

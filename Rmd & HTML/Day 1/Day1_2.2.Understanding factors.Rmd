@@ -1,0 +1,136 @@
+---
+title: "2.2. Understanding factors"
+author: Adapted from Software Carpentry; modified by Maina,Stephanie
+date: "13th of March 2018"
+output: html_document
+---
+
+```{r echo=FALSE}
+library(knitr)
+library(rmarkdown)
+```
+
+```{r setup, echo=FALSE}
+opts_chunk$set(echo = FALSE, cache=FALSE)
+read_chunk('/Users/stephdagata/Documents/GitHub/MQ-R-WORKSHOP-2018/Scripts/Day 1/Day1_1.1.Preliminaries&Software installation.R')
+```
+
+## understanding factors
+
+** Questions** 
+
+  + How is categorical data represented in R?
+  + How do I work with factors?
+  
+**Objectives**
+
+  + Understand how to represent categorical data in R.
+  + Know the difference between ordered and unordered factors.
+  + Be aware of some of the problems encountered when using factors.
+  
+  
+Factors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.
+
+Factors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.
+
+Once created, factors can only contain a pre-defined set values, known as levels. By default, R always sorts levels in alphabetical order. For instance, if you have a factor with 2 levels:
+
+## The factor() Command
+
+The `factor()` command is used to create and modify factors in R:
+
+```{r UF1,echo=TRUE,comment=NA}
+sex <- factor(c("male", "female", "female", "male"))
+```
+
+R will assign `1` to the level `"female"` and `2` to the level `"male"` (because `f` comes before `m`, even though the first element in this vector is `"male"`). You can check this by using the function `levels()`, and check the number of levels using `nlevels()`:
+
+```{r UF2,echo=TRUE,comment=NA}
+levels(sex)
+```
+
+```{r UF3,echo=TRUE,comment=NA}
+nlevels(sex)
+```
+
+Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., "low", "medium", "high") or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:
+
+```{r UF4,echo=TRUE,comment=NA}
+food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
+```
+
+```{r UF5,echo=TRUE,comment=NA}
+levels(food)
+```
+
+```{r UF6,echo=TRUE,comment=NA}
+food <- factor(food, levels = c("low", "medium", "high"))
+```
+
+```{r UF7,echo=TRUE,comment=NA}
+levels(food)
+```
+
+```{r UF8,echo=TRUE,comment=NA,error=T}
+min(food) ## doesn't work
+```
+
+```{r UF9,echo=TRUE,comment=NA}
+food <- factor(food, levels = c("low", "medium", "high"), ordered=TRUE)
+```
+
+```{r UF10,echo=TRUE,comment=NA}
+levels(food)
+```
+
+```{r UF11,echo=TRUE,comment=NA}
+min(food) ## works!
+```
+
+In R's memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: `"low"`, `"medium"`, and `"high"`" is more descriptive than `1`, `2`, `3`. Which is low? You wouldn't be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the subjects in our example data set).
+
+## Representing Data in R
+You have a vector representing levels of exercise undertaken by 5 subjects
+
+**"l","n","n","i","l"** ; n=none, l=light, i=intense
+
+What is the best way to represent this in R?
+
+    + a) exercise <- c("l", "n", "n", "i", "l")
+
+    + b) exercise <- factor(c("l", "n", "n", "i", "l"), ordered = TRUE)
+
+    + c) exercise < -factor(c("l", "n", "n", "i", "l"), levels = c("n", "l", "i"), ordered = FALSE)
+
+    + d) exercise <- factor(c("l", "n", "n", "i", "l"), levels = c("n", "l", "i"), ordered = TRUE)
+
+## Converting Factors
+
+Converting from a factor to a number can cause problems:
+
+```{r UF12,echo=TRUE,comment=NA}
+f <- factor(c(3.4, 1.2, 5))
+```
+
+```{r UF13,echo=TRUE,comment=NA}
+as.numeric(f)
+```
+
+This does not behave as expected (and there is no warning).
+
+The recommended way is to use the integer vector to index the factor levels:
+
+```{r UF14,echo=TRUE,comment=NA}
+levels(f)[f]
+```
+
+This returns a character vector, the `as.numeric()` function is still required to convert the values to the proper type (numeric).
+
+```{r UF15,echo=TRUE,comment=NA}
+f <- levels(f)[f]
+```
+
+```{r UF16,echo=TRUE,comment=NA}
+f <- as.numeric(f)
+```
+

@@ -1,0 +1,596 @@
+---
+title: "1.2.Graphing with R"
+author: Adapted from Software Carpentry; modified by Maina,Stephanie
+date: "27 October 2017"
+output: html_document
+## BASED ON: JOSH MADIN
+## http://acropora.bio.mq.edu.au/resources/introduction-to-r/graphing/
+##
+##	MODIFIED BASED ON DELIVERY BY M. KOSNIK IN 2017.MAR
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Before starting**
+
+**We need data to play with:**
+  
+```{r}
+data <- read.csv("data/seed_root_herbivores.csv", as.is=TRUE)  # Read the csv file:
+
+```
+**What have we got here?**
+```{r}
+head(data)
+```
+
+  + Different ways reference columns, should all work
+
+```{r results = "hide"}
+data[,"Height"] 
+data[["Height"]] 
+data$Height
+```
+
+#######################################
+### **1. Histograms**
+#######################################
+```{r eval=FALSE}
+? hist()
+```
+
+#################
+**Plot histogram of height**
+
+```{r}
+hist(data$Height)
+```
+
+**Lets add better axis labels**
+```{r}
+hist(data$Height, xlab='Height (cm)')
+```
+
+**Lets colour our columns & add main title**
+```{r}
+hist(data$Height, xlab='Height (cm)', col='blue', main="Figure 1")
+```
+
+**Another way to specify colours**
+```{r}
+hist(data$Height, xlab="Height (cm)", col=rgb(0,0.1,0.5), main="Figure 1")
+```
+
+#################
+**Make a histogram for seed.heads... with no axes or labels**
+```{r}
+hist(data$Seed.heads, col='forestgreen', ann=FALSE, axes=FALSE)
+```
+
+**Add axes manually (allows for greater control)**
+
+```{r eval=FALSE}
+?axis()
+```
+      
+```{r}
+hist(data$Seed.heads, col='forestgreen', ann=FALSE, axes=FALSE)
+axis(side= 1)	# identical to what would have been drawn from hist()
+axis(2, lwd=2, lty=3, col='blue', font=3)	# specify details of line 
+```
+
+**Another way to add margin text (aka - label)**
+  
+
+```{r eval=FALSE}
+?mtext()
+```
+
+```{r}
+hist(data$Seed.heads, col='forestgreen', ann=FALSE, axes=FALSE)
+mtext("Genus italicus", side=3, line=-2, font=4, adj=0.7, cex=2)	# big, italic font right side
+mtext("Number of seed heads", side=1, line=2)
+```
+
+**What other options does histogram have?**
+
+```{r eval=FALSE}
+? hist()
+```
+ 
+  + **Set "breaks"**
+```{r}
+hist(sqrt(data$Seed.heads), breaks=(0:34), col='lightgrey')
+```
+
+**What else can "hist()" DO?**
+
+```{r}
+seedHeadHist <- hist(sqrt(data$Seed.heads), breaks=(0:36), plot=FALSE)
+seedHeadHist
+```
+
+#######################################
+### **2.  Bivariate plots**
+#######################################
+
+```{r eval=FALSE}
+?plot()
+```
+
+**Specify the column with the x data and the column with the y data**
+
+```{r}
+plot(data$Height, data$Seed.heads)
+```
+
+**Alternatively, use formula notation (same plot, but better default axis labels)**
+  
+```{r}
+plot(Seed.heads ~ Height, data)
+```
+
+**Plot it with a square root transform on the y axis?**
+  
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data) 
+```
+
+**Lets make nicer axis labels**
+
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data, xlab="Height, cm", ylab="Sqrt number of seed heads", col='forestgreen')
+```
+
+**Lets make it plot lines instead**
+
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data, xlab="Height (cm)", ylab="Sqrt number of seed heads", type = "l")
+```
+
+**Lets make it plot the axes, but not any points!**
+
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data, xlab="Height, cm", ylab="Sqrt number of seed heads", type="n") 
+```
+
+**?? Why would we want to do that??**
+
+```{r eval=FALSE}
+?points()
+```
+
+**Lets plot the `"Root.herbivore == TRUE"` treatment as red circles**
+  
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data, xlab="Height, cm", ylab="Sqrt number of seed heads", type="n") 
+points(sqrt(Seed.heads) ~ Height, data=data[data$Root.herbivore==TRUE,], col="red", pch=21) 
+```
+
+**Lets plot the `"Root.herbivore == FALSE"` treatment as green squares**
+  
+```{r}
+plot(sqrt(Seed.heads) ~ Height, data, xlab="Height, cm", ylab="Sqrt number of seed heads", type="n") 
+points(sqrt(Seed.heads) ~ Height, data=data[data$Root.herbivore==FALSE,], col="green", pch=22)
+```  
+  
+**What else can we specify for points?**
+
+Plot is super general (it will try to plot anything).. here it defaults to points, factors default to boxplots...
+
+```{r}
+plot(Seed.heads ~ as.factor(Seed.herbivore), data)
+```
+
+#######################################
+### **3. Box plots**
+#######################################
+
+```{r eval=FALSE}
+?boxplot()
+```
+
+```{r}
+boxplot(data$Height, col='darkblue')
+```
+
+**SPLIT IT BY "Root.herbivore" TREATMENT?**
+
+```{r}
+boxplot(Height ~ Root.herbivore, data, col='skyblue') 
+```
+
+**Better axis labels**
+```{r}
+boxplot(Height ~ Root.herbivore, data, xlab="Root herbivores", ylab="Plant height, cm") 
+```
+
+**Add `"notch"` es?**
+
+```{r}
+boxplot(Height ~ Root.herbivore, data, xlab="Root herbivores", ylab="Plant height, cm", notch = TRUE)
+```
+
+**?? What are the "notches??**
+
+Overlay the points? ( it works - if we make `root.herbivore` a factor )
+
+```{r}
+boxplot(Height ~ Root.herbivore, data, xlab="Root herbivores", ylab="Plant height, cm", notch = TRUE)
+points(as.factor(data$Root.herbivore),data$Height, cex=0.5)
+```
+
+
+#######################################
+### **4.Exploratory plotting**
+#######################################
+
+```{r eval=FALSE}
+?pairs()
+```
+
+A very cool fucntion, but only works with numeric data.
+A Great way to quickly access collinearity among variables.
+
+```{r error=TRUE}
+pairs(data)
+```
+
+**Which columns have numeric data??**
+  
+```{r}
+names(data) 
+comps <- names(data)[2:8]
+comps
+```
+
+**Behold a quick set of plots for all pair-wise comparisons**
+  
+```{r}
+pairs(data[comps])
+```
+
+#######################################
+### **5. 3D plotting**
+#######################################
+
+**Lets use the built in volcano dataset for this...**
+
+```{r eval=FALSE}
+?volcano
+```
+
+**Two good built in functions are `image()` and `contour()`**
+```{r eval=FALSE}
+image(volcano) 
+contour(volcano) 
+```
+
+**Specify the colour gradient**
+
+```{r eval=FALSE}
+image(volcano, col=terrain.colors(50))
+```
+
+**Add" contours over top of `image()`**
+
+```{r eval=FALSE}
+contour(volcano, add=TRUE)
+```
+
+#######################################
+### **6.  Bar plots**
+#######################################
+
+I personally really dislike barplots, but they are commonly used.
+R does not have a standard error function, but we can write one...
+
+```{r}
+standard.error <- function(x) { sd(x)/sqrt(length(x)) }
+```
+
+Remember all the way back to the morning...
+
+USE `"aggregate"` TO GET THE mean `data['Height']` 
+
+BY `data[c("Root.herbivore", "Seed.herbivore")]`
+
+   + **TIP**: USING `data["Height"]` INSTEAD OF `data$Height` GIVES YOU NICER COLUMN NAMES
+
+```{r}
+mn <- aggregate(data["Height"], data[c("Root.herbivore", "Seed.herbivore")], mean) 
+bp <- barplot(mn$Height)
+```
+
+** USE `"aggregate"` TO GET THE standard.error**
+```{r eval=FALSE}
+se <- aggregate(data["Height"], data[c("Root.herbivore", "Seed.herbivore")], standard.error)
+```
+
+** Add the standard error using arrows**
+```{r eval=FALSE}
+arrows(bp, mn$Height + se$Height, bp, mn$Height - se$Height, code=3, angle=90)
+```
+
+*Note: by assigning barplot() to bp... we can do the next step*
+
+  
+  ?? Doesn't quite look right
+
+**Make a bar plot and specify y-axis "ylim" so that the whole se fits in...**
+
+```{r eval=FALSE}
+bp <- barplot(mn$Height, ylim=c(0, max(mn$Height + se$Height))) 
+arrows(bp, mn$Height + se$Height, bp, mn$Height - se$Height, code=3, angle=90)
+```
+
+**Add labels**
+
+```{r eval=FALSE}
+axis(1, at=bp, labels=as.character(mn$Root.herbivore)) 
+axis(1, at=bp, labels=as.character(mn$Seed.herbivore), line=1, tick=FALSE)  
+```
+
+
+
+? What does `tick` do?
+
+**Make better labels**
+  
+```{r eval=FALSE}
+herb_labels <- c("None", "Root only", "Seed only", "Both root & seed") 
+bp <- barplot(mn$Height, ylim=c(0, 80)) 
+arrows(bp, mn$Height + se$Height, bp, mn$Height - se$Height, code=3, angle=90)
+axis(1, at=bp, labels=herb_labels)
+```
+
+Still not what we want because r does skips labels that would over write
+
+```{r eval=FALSE}
+axis(1, at=bp, labels=herb_labels, las=2)
+title("Barplots are a pain...")
+```
+
+*How do we fix the margin size...*
+
+*Show me how to do that crazy voodoo that youdoo?*
+
+*Remember if you dig deep enough you can tinker with anything in r*
+
+*Afraid? "You will be. You... will... be." (Yoda)* 
+
+
+#######################################
+##  **7. Global graphic parameters**
+#######################################
+
+```{r eval=FALSE}
+?par
+```
+
+  + **NOTE**: No one remembers all of these parameters but hopefully you will remember that ?par gets you the answer
+  + **NOTE**: Closing your graphing window will reset your global parameters (for good and bad)
+  + **TIP**: You can save parameters to a variable to restore your old ones
+  + **TIP**: par() Will tell you what the current parameters are
+
+**Save current / original parameters**
+  
+```{r}
+oldPar <- par()
+```
+So how can we fix our margin issue?
+  
+```{r eval=FALSE}
+par(mar=c(9, 4, 4, 2)) 
+bp <- barplot(mn$Height, ylim=c(0, 80)) 
+arrows(bp, mn$Height + se$Height, bp, mn$Height - se$Height, code=3, angle=90, lwd=2)
+axis(1, at=bp, labels=herb_labels, las=2) 
+mtext("Type of herbivory", side=1, line=7) 
+mtext("Plant height, cm", side=2, line=3) 
+title("Barplots are still a pain...")
+```
+
+**Restore original parameters**
+  
+```{r error=FALSE}
+par(oldPar)
+```
+
+#######################################
+### **8. Saving plots**
+#######################################
+
+  + **NOTE**: You can save or "export" the graphing window to save your plots
+  + **TIP**: Don't save or "export" the graphing window to save your plots
+  + **TIP**: Always use a vector format (i.e., pdf) so that your plots look good when scaled
+  + **TIP**: If you must use a raster format use png rather than jpeg
+  + **TIP**: Save your plot from the command line!
+        - Total control of plot sizes, etc to meet specific journal requirements
+        - You can just run a script to regenerate all your plots if (when) your data change or your supervisor wants it to look a little different
+        - Everytime the script runs you will always get the exact same plot, reproducibility is key to good science
+  + **TIP**: Make a subdirectory called "figs" in your project directory
+dir.create("./figs")
+  + **NOTE**: Fancy script - only creates the directory if the directory is not already there
+  + **TIP**: Dealing with the unexpected well is what makes flexible code (most code we write it not flexible)
+if(!("./figs") %in% list.dirs(".")) dir.create("./figs")
+
+**Start a pdf file to write to:**
+
+```{r eval=FALSE}
+par(mar=c(9, 4, 4, 2)) 
+bp <- barplot(mn$Height, ylim=c(0, 80)) 
+arrows(bp, mn$Height + se$Height, bp, mn$Height - se$Height, code=3, angle=90, lwd=2)
+axis(1, at=bp, labels=herb_labels, las=2) 
+mtext("Type of herbivory", side=1, line=7) 
+mtext("Plant height, cm", side=2, line=3) 
+title("Barplots are still a pain...")
+pdf("./figs/my_barplot.pdf", width=5, height=5) 
+```
+
+What are the units of width and height?
+
+Must always use `dev.off()` when you are done writing to the file... or it stays open...
+
+```{r eval=FALSE}
+par(mar=c(9, 4, 4, 2)) 
+bp <- barplot(mn$Height, ylim=c(0, 80)) 
+arrows(bp, mn$Heigh + se$Height, bp, mn$Heigh - se$Height, angle=90, code=3) 
+axis(1, at=bp, labels=herb_labels, las=2) 
+mtext("Degree of herbivory", 1, line=7) 
+mtext("Plant height, cm", 2, line=3) 
+title("Barplots are a pain...") 
+dev.off()
+```
+
+**Start a png file**
+
+```{r eval=FALSE}
+png(filename="./figs/my_barplot2.png", width=400, height=400) 
+par(mar=c(9, 4, 4, 2)) 
+bp <- barplot(mn$Height, ylim=c(0, 80)) 
+arrows(bp, mn$Heigh + se$Height, bp, mn$Heigh - se$Height, angle=90, code=3) 
+axis(1, at=bp, labels=herb_labels, las=2) 
+mtext("Degree of herbivory", 1, line=7) 
+mtext("Plant height, cm", 2, line=3) 
+title("Barplots are a pain...") 
+dev.off()
+```
+
+  + **TIP**: When things go wrong saving plots
+        - It is nearly always because the file was not closed
+        - Repeat dev.off() until it says "cannot shut down device"
+
+
+#######################################
+### **9. Multiple panel plots**
+#######################################
+
+`"mfrow"` Fills your panels across the top row and then sequential rows down
+
+`"mfcol"` Fills your panels down the left most column first...
+
+```{r}
+oldPar <- par()
+```
+
+**Make 4 histograms**
+
+```{r eval=FALSE}
+par(mfcol=c(2,2)) 
+hist(data$Height, col='blue') 
+hist(data$Height, col='green') 
+hist(data$Height, col='red') 
+hist(data$Height) 
+par(oldPar)
+```
+
+**Lets make it nicer...**
+
+    + Set margins all to 1
+    
+    + Set the outer margins to `c(4,3,4,2)`
+
+```{r eval=FALSE}
+par(mfrow=c(2, 2), mar=c(1, 1, 1, 1), oma=c(4, 3, 4, 2))
+#lets only put the outer axes on (common if the axes are the same)
+#lets label each panel a-d in the upper left corner
+hist(data$Height, ann=FALSE, axes=FALSE, col='forestgreen') 
+axis(2) 
+mtext("A", 3, -2, adj = 0.1, font=2, cex=1.2) 
+hist(data$Height, ann=FALSE, axes=FALSE, col='darkblue') 
+mtext("B", 3, -2, adj = 0, font=2, cex=1.2) 
+hist(data$Height, ann=FALSE, col='skyblue') 
+mtext("C", 3, -2, adj = 0.1, font=2, cex=1.2) 
+hist(data$Height, ann=FALSE, axes=FALSE, col='grey40') 
+axis(1) 
+mtext("D", 3, -2, adj = 0, font=2, cex=1.2)
+```
+
+Just to demonstrate the possible boxes...
+
+```{r eval=FALSE}
+?box()
+box("plot", col="red") 
+box("figure", col="blue") 
+box("inner", col="black") 
+box("outer", col="pink")
+##	`mtext` really shines - putting joint axis labels  `"outer"`
+mtext("Height (cm)", side=1, outer=TRUE, line=2) 
+mtext("Frequency", side=2, outer=TRUE, line=2) 
+mtext("Four plots of height", side=3, outer=TRUE, line=1, cex=1.5) 
+```
+
+
+#######################################
+### **10.Adding additional things to plots**
+#######################################
+
+```{r eval=FALSE}
+plot(sqrt(Seed.heads) ~ Height, data, type="p", axes=FALSE, ann=FALSE, pch=21, col="white", bg="black") 
+axis(1) 
+axis(2, las=2) 
+mtext("Height (cm)", side = 1, line = 3) 
+mtext("sqrt(Number of seed heads)", side = 2, line = 3) 
+title("Figure 1", adj=0)
+
+```
+
+**Get/Plot a best fit line using `lm()`**
+
+```{r }
+mod <- lm(sqrt(Seed.heads) ~ Height, data)
+```
+
+**Plot the line using `abline`**
+
+```{r eval=FALSE}
+abline(mod, lwd=2, lty=2, col='blue')
+```
+
+**Get/plot the prediction intervals**
+
+```{r eval=FALSE}
+hs <- seq(min(data$Height), max(data$Height), 1) 
+seed_pred <- predict(mod, list(Height = hs), interval = "prediction") 
+lines(hs, seed_pred[,"lwr"], lty = 2) 
+lines(hs, seed_pred[,"upr"], lty = 2)
+```
+
+**Plot a shaded confidence interval region**
+
+```{r eval=FALSE}
+polygon(c(hs, rev(hs)), c(seed_conf[,"lwr"], rev(seed_conf[,"upr"])), col = rgb(0,0,0,0.2), border = NA)
+```
+
+**Let's add the r-squared to the plot**
+
+  + **TIP**: Unicode characters are an easy way to get some characters
+```{r eval=FALSE}
+text(80,5,paste("r\U00b2 = ",round(summary(mod)$r.squared,2))) # mod_sqrt does not exist: change to mod
+```
+
+**Add a legend**
+
+```{r eval=FALSE}
+legend("topleft", c("green data", "actual data", "orange point"), pch=c(4, 20, 3), col=c("green", "black", "orange"), bty="n")
+```
+
+Add some math 
+```{r eval=FALSE}
+text(90, 3, expression(Y[i] == beta[0]+beta[1]*X[i1]+epsilon[i])) # see demo(plotmath) for more examples 
+```
+
+
+
+Now... Wrap the super nice plots into a pdf...
+
+
+```{r}
+dev.off()
+```
+
+
+
